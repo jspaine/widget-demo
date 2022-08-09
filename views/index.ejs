@@ -13,9 +13,19 @@
         elem: "app",
         widget: "<%= widgetId %>",
         getJWT: (userId) =>
-          fetch(`jwt?userId=${userId}`)
+          fetch(
+            "/jwt",
+            {
+              body: JSON.stringify({userId}),
+              method: "POST",
+              headers: {"Content-Type": "application/json"}
+            }
+          )
             .then(res => res.json())
-            .then(data => data.jwt)
+            .then(({jwt, error}) => {
+              if (error) throw new Error(error)
+              return jwt
+            })
       })
     </script>
   </body>

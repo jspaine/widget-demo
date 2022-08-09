@@ -12,9 +12,14 @@ const config = {
 
 const app = express()
 app.set("view engine", "ejs")
+app.use(express.json())
 
-app.get("/jwt", (req, res) => {
-  const {userId} = req.query
+app.post("/jwt", (req, res) => {
+  const {userId} = req.body
+
+  if (!userId) {
+    return res.status(400).send({error: "userId is required"})
+  }
 
   return importJWK(config.privateKey)
     .then(key =>
@@ -27,7 +32,7 @@ app.get("/jwt", (req, res) => {
         .sign(key)
     )
     .then(jwt => res.send({jwt}))
-    .catch(err => res.send({error: err.message}))
+    .catch(err => res.status(500).send({error: err.message}))
 })
 
 app.get("/", (req, res) => {
