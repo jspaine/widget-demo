@@ -1,0 +1,7 @@
+{
+  "identityUrl": "https://identity.dev.127.0.0.1.nip.io",
+  "issuer": "http://localhost:8000",
+  "port": 8000,
+  "privateKey": {},
+  "widgetId": ""
+}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="<%= identityUrl %>/widget-pages/<%= widgetId %>"></script>
+  </head>
+  <body>
+    <div>Accounts:</div>
+
+    <div id="app">placeholder</div>
+
+    <script>
+      window.moneyhub.init({
+        elem: "app",
+        widget: "<%= widgetId %>",
+        getJWT: (userId) =>
+          fetch(`jwt?userId=${userId}`)
+            .then(res => res.json())
+            .then(data => data.jwt)
+      })
+    </script>
+  </body>
+</html>
