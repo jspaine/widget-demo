@@ -1,11 +1,13 @@
 import _config from "config"
 import express from "express"
-import {SignJWT, importJWK} from "jose"
+import crypto from "crypto"
+import {SignJWT, importJWK, base64url} from "jose"
 
 const config = {
   identityUrl: _config.get("identityUrl"),
-  issuer: _config.get("issuer"),
   port: process.env.PORT || _config.get("port"),
+  clientId: _config.get("clientId"),
+  userId: _config.get("userId"),
   privateKey: _config.get("privateKey"),
   widgetId: _config.get("widgetId"),
 }
@@ -14,21 +16,23 @@ const app = express()
 app.set("view engine", "ejs")
 app.use(express.json())
 
+const random = (length = 32) =>
+  base64url.encode(crypto.randomBytes(length))
+
+
 app.post("/jwt", (req, res) => {
-  const {userId} = req.body
 
-  if (!userId) {
-    return res.status(400).send({error: "userId is required"})
-  }
-
-  return importJWK(config.privateKey)
+  const {privateKey, identityUrl, clientId, userId} = config
+  return importJWK(privateKey)
     .then(key =>
-      new SignJWT({userId})
-        .setProtectedHeader({alg: "RS256"})
+      new SignJWT({})
+        .setProtectedHeader({alg: privateKey.alg, kid: privateKey.kid})
+        .setSubject(userId)
+        .setIssuer(clientId)
+        .setAudience(identityUrl)
         .setIssuedAt()
-        .setIssuer(config.issuer)
-        .setAudience(config.identityUrl)
-        .setExpirationTime('1h')
+        .setJti(random())
+        .setExpirationTime('5m')
         .sign(key)
     )
     .then(jwt => res.send({jwt}))

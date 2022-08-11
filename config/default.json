@@ -1,7 +1,21 @@
 {
-  "identityUrl": "https://identity.dev.127.0.0.1.nip.io",
-  "issuer": "http://localhost:8000",
+  "identityUrl": "https://identity.dev.127.0.0.1.nip.io/oidc",
   "port": 8000,
-  "privateKey": {},
-  "widgetId": ""
+  "clientId": "client-id",
+  "userId": "user-id",
+  "widgetId": "widget-id",
+  "privateKey": {
+    "kty": "RSA",
+    "n": "yneXNs3xBN2IHmEeR8CC21mfcyEc3O1kApHyao2W5Dqh22Dn6Mx5cA9PytWQOeOGeQczPtdSfruLgjcgYTUnn4WE-8Doa8V_Fl2ZkCyMPqxhHtcNuhIL2QEMQhsSCZfzGB9ZAZLwpAslYMDwT1mJf63hP0Jtw7oylT6ylWqTqsch_fC9yMifTiHYJFDBBXT0L3PVI7HszgD6dKtjqcr9QNe2MwXshnsVHCnq-W7Ta6iLPxqlGmPWld71jNSzWu1OhLmWqYoyfNDwpLTWgEnRMTZqvf_iteXmvXNCoqlqWuqJcJzm1M5xnBPFx0D_3yPoBfH4splakrFvbdV3Oh-v5Q",
+    "e": "AQAB",
+    "d": "RASzP00meGz4KsSTyKUrEQfl4mawbKQv4hEn8JYKqDfuYmYG4xW2gmgSdWET5-7BIW3C0IzEASF-d8uPTDjwS84uY-ll67bYwCnHykC9CN0eb57t1KH1avzIInk3sRNkLqlxXG8B-wpnjz6iPPYmlEdVEcx-Va_7CFqc4keAvnE4u0Rbf4iAdnyy3JHaDt0B3DuJsubfD7-e_2cX5-kVSd1cjgWRHRvATof5274kVhtKU1HsjEhX7a2uk_jS4uqm9eCcgjAedvlr6f4WeRZ891i7PKeXvLxqrYne5LyKlmbEpeuF9Lc8ywR81qCxgx9YP1lQRP9iIIBFk2QA7i3vwQ",
+    "p": "6cTEeKSMSa67UIn2mV-52FlNPTfm3bfvAu3Kx7USOE2ucBozVqscxVtmpHDPp-KkUviy0V9Ep7l3MWPVSxPLNE-DmnZ26kjL7De0IWeLws2V8kml1eOK_zeuwOwKgn9ep6uDJABj-ej08kEs2-5T67-lRPhpqm3IYXLiApSSdLE",
+    "q": "3bjFT_fIwiQgClx_cr2FDmd0FzlgRgSz25v36Cln0TSpjcZ54Odekvqs7FTtKmSRqW_sjh2MgE98bNS3v9u5j-Hk4TP8kPFoXOfDvVmcrGJIFYM8nduY2anIaJFigmLZnzrlRsk9XuVBIPL5eijqjLmgBEQ7Bfea_8aKJ4Uoy3U",
+    "dp": "5DRC--beUHuzvh7ATd9mBC7BORbeV-lb-Qb7otM_sxkaRbM-FMg78OmWHMdH4ANfGORRZBTVZ8qk8eEccgsjnrBUr7Afy_w-nh2OyeFUTVn2nCyLKG7V3OmVvh1u8Q-37oR_I-EBuBBTNj6rtRNGd2iBxP-f31EGgSLuQUiaZDE",
+    "dq": "jgjypYLHIc9Ak0KkBl3wIcUWMlZ4HQKgMVvd2OTFc9h3kbIGm5O8Gw3ovtC8yX55bYCcmoHFYuEIhTNTrt1UJx7_n2DNOBDd2T5DP0ZrvmaLZPSYXUuyxCUmlA4me_5VCNMS02DRJrxYF4JvXNlfP90d6_3FjdILgjSuhhighI0",
+    "qi": "lwxDJudf5Pco6fId1SDSSrRphGNKL6E43lneuqHUeQO0JLWFOqci4w5CAweK0A3W2z-tfHvXC6cTZvW2BAIgvXDzWrOEbezLE0WxzL3oKAcShiLnvmRByMfWJI09V6jXmNc8klpKQSkaqXx_8yCMGzu5H1bGFr8fMF-JjSRxhd4",
+    "kid": "AleHqr7JgwHar7Klwbxk9aWwTOuv_NkfIWIbxXiaJek",
+    "use": "sign",
+    "alg": "RS256"
+  }
 }
