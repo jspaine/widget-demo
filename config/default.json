@@ -1,5 +1,6 @@
 {
   "apiGatewayUrl": "http://apigateway.dev.127.0.0.1.nip.io",
+  "authClientId": "auth-client-id",
   "clientId": "client-id",
   "identityUrl": "https://identity.dev.127.0.0.1.nip.io",
   "port": 8000,

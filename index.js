@@ -5,6 +5,7 @@ import {SignJWT, importJWK, base64url} from "jose"
 
 const config = {
   apiGatewayUrl: _config.get("apiGatewayUrl"),
+  authClientId: _config.get("authClientId"),
   clientId: _config.get("clientId"),
   identityUrl: _config.get("identityUrl"),
   port: process.env.PORT || _config.get("port"),
@@ -21,7 +22,12 @@ app.set("view engine", "ejs")
 app.use(express.static("public"))
 
 app.get("/jwt", (req, res) => {
-  const {privateKey, identityUrl, clientId, userId} = config
+  const {
+    authClientId: clientId,
+    identityUrl,
+    privateKey,
+    userId
+  } = config
   const {alg, kid} = privateKey
 
   return importJWK(privateKey)
