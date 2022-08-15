@@ -29,6 +29,7 @@ app.get("/jwt", (req, res) => {
     userId
   } = config
   const {alg, kid} = privateKey
+  const audience = `${identityUrl}/oidc`
 
   return importJWK(privateKey)
     .then(key =>
@@ -36,7 +37,7 @@ app.get("/jwt", (req, res) => {
         .setProtectedHeader({alg, kid})
         .setSubject(userId)
         .setIssuer(clientId)
-        .setAudience(identityUrl)
+        .setAudience(audience)
         .setIssuedAt()
         .setJti(random())
         .setExpirationTime('5m')
