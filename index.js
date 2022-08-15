@@ -1,32 +1,33 @@
 import _config from "config"
-import express from "express"
 import crypto from "crypto"
+import express from "express"
 import {SignJWT, importJWK, base64url} from "jose"
 
 const config = {
+  apiGatewayUrl: _config.get("apiGatewayUrl"),
+  clientId: _config.get("clientId"),
   identityUrl: _config.get("identityUrl"),
   port: process.env.PORT || _config.get("port"),
-  clientId: _config.get("clientId"),
-  userId: _config.get("userId"),
   privateKey: _config.get("privateKey"),
-  widgetId: _config.get("widgetId"),
+  userId: _config.get("userId"),
+  widgetScriptsUrl: _config.get("widgetScriptsUrl"),
 }
-
-const app = express()
-app.set("view engine", "ejs")
-app.use(express.json())
 
 const random = (length = 32) =>
   base64url.encode(crypto.randomBytes(length))
 
+const app = express()
+app.set("view engine", "ejs")
+app.use(express.static("public"))
 
-app.post("/jwt", (req, res) => {
-
+app.get("/jwt", (req, res) => {
   const {privateKey, identityUrl, clientId, userId} = config
+  const {alg, kid} = privateKey
+
   return importJWK(privateKey)
     .then(key =>
       new SignJWT({})
-        .setProtectedHeader({alg: privateKey.alg, kid: privateKey.kid})
+        .setProtectedHeader({alg, kid})
         .setSubject(userId)
         .setIssuer(clientId)
         .setAudience(identityUrl)
@@ -39,9 +40,13 @@ app.post("/jwt", (req, res) => {
     .catch(err => res.status(500).send({error: err.message}))
 })
 
-app.get("/", (req, res) => {
-  const {identityUrl, widgetId} = config
-  res.render("index", {identityUrl, widgetId})
+app.get("/accounts-and-assets.html", (req, res) => {
+  const {apiGatewayUrl, identityUrl, widgetScriptsUrl} = config
+  res.render("accounts-and-assets", {
+    apiGatewayUrl,
+    identityUrl,
+    widgetScriptsUrl,
+  })
 })
 
 app.listen(config.port, () => {

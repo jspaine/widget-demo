@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="<%= identityUrl %>/widget-pages/<%= widgetId %>"></script>
+    <title>Accounts and assets widget demo</title>
+    <script
+      src="<%= widgetScriptsUrl %>/accounts-and-assets.js"
+      data-identityuri="<%= identityUrl %>"
+      data-apigatewayuri="<%= apiGatewayUrl %>"
+    ></script>
   </head>
   <body>
     <div>Accounts:</div>
@@ -11,16 +16,8 @@
     <script>
       window.moneyhub.init({
         elem: "app",
-        widget: "<%= widgetId %>",
-        getJWT: (userId) =>
-          fetch(
-            "/jwt",
-            {
-              body: JSON.stringify({userId}),
-              method: "POST",
-              headers: {"Content-Type": "application/json"}
-            }
-          )
+        getJWT: () =>
+          fetch("/jwt")
             .then(res => res.json())
             .then(({jwt, error}) => {
               if (error) throw new Error(error)

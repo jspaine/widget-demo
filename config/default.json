@@ -1,9 +1,8 @@
 {
-  "identityUrl": "https://identity.dev.127.0.0.1.nip.io/oidc",
-  "port": 8000,
+  "apiGatewayUrl": "http://apigateway.dev.127.0.0.1.nip.io",
   "clientId": "client-id",
-  "userId": "user-id",
-  "widgetId": "widget-id",
+  "identityUrl": "https://identity.dev.127.0.0.1.nip.io",
+  "port": 8000,
   "privateKey": {
     "kty": "RSA",
     "n": "yneXNs3xBN2IHmEeR8CC21mfcyEc3O1kApHyao2W5Dqh22Dn6Mx5cA9PytWQOeOGeQczPtdSfruLgjcgYTUnn4WE-8Doa8V_Fl2ZkCyMPqxhHtcNuhIL2QEMQhsSCZfzGB9ZAZLwpAslYMDwT1mJf63hP0Jtw7oylT6ylWqTqsch_fC9yMifTiHYJFDBBXT0L3PVI7HszgD6dKtjqcr9QNe2MwXshnsVHCnq-W7Ta6iLPxqlGmPWld71jNSzWu1OhLmWqYoyfNDwpLTWgEnRMTZqvf_iteXmvXNCoqlqWuqJcJzm1M5xnBPFx0D_3yPoBfH4splakrFvbdV3Oh-v5Q",
@@ -17,5 +16,7 @@
     "kid": "AleHqr7JgwHar7Klwbxk9aWwTOuv_NkfIWIbxXiaJek",
     "use": "sign",
     "alg": "RS256"
-  }
+  },
+  "userId": "user-id",
+  "widgetScriptsUrl": "http://localhost:8083"
 }
