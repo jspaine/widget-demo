@@ -15,7 +15,7 @@
 
     <script>
       window.moneyhub.init({
-        elem: "app",
+        elem: document.getElementById("app"),
         getJWT: () =>
           fetch("/jwt")
             .then(res => res.json())
