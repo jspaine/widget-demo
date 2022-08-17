@@ -6,7 +6,6 @@ import {SignJWT, importJWK, base64url} from "jose"
 const config = {
   apiGatewayUrl: _config.get("apiGatewayUrl"),
   authClientId: _config.get("authClientId"),
-  clientId: _config.get("clientId"),
   identityUrl: _config.get("identityUrl"),
   port: process.env.PORT || _config.get("port"),
   privateKey: _config.get("privateKey"),
@@ -22,6 +21,8 @@ app.set("view engine", "ejs")
 app.use(express.static("public"))
 
 app.get("/jwt", (req, res) => {
+  // In a real world scenario the userId should be retrieved from the
+  // user session once that the user has authenticated
   const {
     authClientId: clientId,
     identityUrl,
