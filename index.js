@@ -2,6 +2,7 @@ import _config from "config"
 import crypto from "crypto"
 import express from "express"
 import {SignJWT, importJWK, base64url} from "jose"
+import cors from "cors"
 
 const config = {
   apiGatewayUrl: _config.get("apiGatewayUrl"),
@@ -18,6 +19,7 @@ const random = (length = 32) =>
 
 const app = express()
 app.set("view engine", "ejs")
+app.use(cors())
 app.use(express.static("public"))
 
 app.get("/jwt", (req, res) => {
