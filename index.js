@@ -59,6 +59,19 @@ app.get("/accounts-and-assets.html", (req, res) => {
   })
 })
 
+
+app.get("/cordova-payment-widget/callback", (req, res) => {
+  console.log(req.query)
+  const {
+    code,
+    state,
+    id_token,
+    iss,
+  } = req.query
+  const redirectUrl = `moneyhubwidgets://callback?code=${code}&state=${state}&iss=${iss}&id_token=${id_token}`
+  res.render("cordova-payment-widget-callback", {redirectUrl})
+})
+
 app.listen(config.port, () => {
   console.log("Listening on port: ", config.port)
 })

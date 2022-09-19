@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<body>
+  <script>
+    function extractHash() {
+      if (window.location.href.indexOf("#") >= 0)
+        window.location = window.location.href.replace("#", "?")
+    }
+    window.onhashchange = extractHash
+    extractHash()
+
+  </script>
+  <h2>
+  <a href="<%= redirectUrl %>}">Open mobile app</a>
+  </h2>
+</body>
