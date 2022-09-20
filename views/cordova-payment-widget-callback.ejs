@@ -1,15 +1,43 @@
 <!DOCTYPE html>
-<body>
-  <script>
-    function extractHash() {
-      if (window.location.href.indexOf("#") >= 0)
-        window.location = window.location.href.replace("#", "?")
-    }
-    window.onhashchange = extractHash
-    extractHash()
+<head>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <title>Cordova Callback</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
 
-  </script>
-  <h2>
-  <a href="<%= redirectUrl %>">Open mobile app</a>
-  </h2>
+        #app {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+        a {
+            color:darkcyan;
+            text-decoration: none;
+        }
+    </style>
+
+     <script>
+        function extractHash() {
+          if (window.location.href.indexOf("#") >= 0)
+            window.location = window.location.href.replace("#", "?")
+        }
+        window.onhashchange = extractHash
+        extractHash()
+    </script>
+
+</head>
+
+<body>
+  <div id="app">
+    <h2>
+        <a href="<%= redirectUrl %>">Open mobile app</a>
+    </h2>
+  </div>
 </body>

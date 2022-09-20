@@ -3,6 +3,7 @@ import crypto from "crypto"
 import express from "express"
 import {SignJWT, importJWK, base64url} from "jose"
 import cors from "cors"
+import qs from "qs"
 
 const config = {
   apiGatewayUrl: _config.get("apiGatewayUrl"),
@@ -61,14 +62,10 @@ app.get("/accounts-and-assets.html", (req, res) => {
 
 
 app.get("/cordova-payment-widget/callback", (req, res) => {
-  console.log(req.query)
-  const {
-    code,
-    state,
-    id_token,
-    iss,
-  } = req.query
-  const redirectUrl = `moneyhubwidgets://callback?code=${code}&state=${state}&iss=${iss}&id_token=${id_token}`
+
+  const queryString = qs.stringify(req.query)
+  const redirectUrl = `moneyhubwidgets://callback?${queryString}`
+
   res.render("cordova-payment-widget-callback", {redirectUrl})
 })
 
