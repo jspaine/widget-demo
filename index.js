@@ -65,8 +65,8 @@ app.get("/cordova-payment-widget/callback", (req, res) => {
 
   const queryString = qs.stringify(req.query)
   const redirectUrl = `moneyhubwidgets://callback?${queryString}`
-
-  res.render("cordova-payment-widget-callback", {redirectUrl})
+  res.redirect(redirectUrl)
+  // res.render("cordova-payment-widget-callback", {redirectUrl})
 })
 
 app.listen(config.port, () => {
