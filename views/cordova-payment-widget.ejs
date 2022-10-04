@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <script
+      src="http://192.168.0.174:8083/payment.js"
+      data-identityuri="http://192.168.0.174:58758"
+      data-apigatewayuri="http://apigateway.dev.127.0.0.1.nip.io"
+    ></script>
+  </head>
+  <body>
+      <div id="app"></div>
+
+      <script type="text/javascript">
+        const elem = document.getElementById("app")
+        const params = new URLSearchParams(window.location.search)
+        const code = params.get("code")
+        const state = params.get("state")
+
+        if (code)
+          window.moneyhub.callback({elem, code, state})
+        else
+          window.moneyhub.init({
+            elem,
+            clientId: "client-id",
+            clientSecret: "client-secret",
+            payeeId: "payee-id",
+            payeeRef: "PAYEE-REF",
+            payerRef: "PAYER-REF",
+            startText: "HELLO :)",
+            amount: 1000,
+            type: "test",
+            redirectUri: "http://localhost:8000/cordova-payment-widget/callback",
+            openUri: (uri) => {
+              console.log("OPENING_URI", uri)
+              window.location = uri
+            }
+          })
+      </script>
+  </body>
+</html>

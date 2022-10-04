@@ -60,6 +60,14 @@ app.get("/accounts-and-assets.html", (req, res) => {
   })
 })
 
+app.get("/cordova-payment-widget", (req, res) => {
+  const {apiGatewayUrl, identityUrl, widgetScriptsUrl} = config
+  res.render("cordova-payment-widget", {
+    apiGatewayUrl,
+    identityUrl,
+    widgetScriptsUrl,
+  })
+})
 
 app.get("/cordova-payment-widget/callback", (req, res) => {
 
