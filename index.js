@@ -13,6 +13,7 @@ const config = {
   privateKey: _config.get("privateKey"),
   userId: _config.get("userId"),
   widgetScriptsUrl: _config.get("widgetScriptsUrl"),
+  paymentWidget: _config.get("paymentWidget")
 }
 
 const random = (length = 32) =>
@@ -52,17 +53,23 @@ app.get("/jwt", (req, res) => {
 })
 
 app.get("/accounts-and-assets.html", (req, res) => {
+  const {clientId, secretId, payeeId, redirectUrl} = config.paymentWidget
+
   const {apiGatewayUrl, identityUrl, widgetScriptsUrl} = config
   res.render("accounts-and-assets", {
     apiGatewayUrl,
     identityUrl,
     widgetScriptsUrl,
+    clientId,
+    secretId,
+    payeeId,
+    redirectUrl
   })
 })
 
-app.get("/cordova-payment-widget", (req, res) => {
+app.get("/payment-widget", (req, res) => {
   const {apiGatewayUrl, identityUrl, widgetScriptsUrl} = config
-  res.render("cordova-payment-widget", {
+  res.render("payment-widget", {
     apiGatewayUrl,
     identityUrl,
     widgetScriptsUrl,
