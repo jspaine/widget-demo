@@ -53,26 +53,27 @@ app.get("/jwt", (req, res) => {
 })
 
 app.get("/accounts-and-assets.html", (req, res) => {
-  const {clientId, secretId, payeeId, redirectUrl} = config.paymentWidget
 
   const {apiGatewayUrl, identityUrl, widgetScriptsUrl} = config
   res.render("accounts-and-assets", {
     apiGatewayUrl,
     identityUrl,
     widgetScriptsUrl,
-    clientId,
-    secretId,
-    payeeId,
-    redirectUrl
   })
 })
 
 app.get("/payment-widget", (req, res) => {
+  const {clientId, clientSecret, payeeId, redirectUri} = config.paymentWidget
+
   const {apiGatewayUrl, identityUrl, widgetScriptsUrl} = config
   res.render("payment-widget", {
     apiGatewayUrl,
     identityUrl,
     widgetScriptsUrl,
+    clientId,
+    clientSecret,
+    payeeId,
+    redirectUri
   })
 })
 
